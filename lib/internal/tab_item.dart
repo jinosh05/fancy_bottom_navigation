@@ -64,18 +64,12 @@ class TabItem extends StatelessWidget {
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: ANIM_DURATION),
                 opacity: (selected) ? ALPHA_OFF : ALPHA_ON,
-                child: IconButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  padding: EdgeInsets.all(0),
-                  alignment: Alignment(0, 0),
-                  icon: Icon(
+                child: InkWell(
+                  onTap: () => callbackFunction(uniqueKey),
+                  child: Icon(
                     iconData,
                     color: iconColor,
                   ),
-                  onPressed: () {
-                    callbackFunction(uniqueKey);
-                  },
                 ),
               ),
             ),
