@@ -23,9 +23,76 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey bottomNavigationKey = GlobalKey();
   int currentPage = 0;
 
-  GlobalKey bottomNavigationKey = GlobalKey();
+  _getPage(int page) {
+    switch (page) {
+      case 0:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the home page"),
+            RaisedButton(
+              child: Text(
+                "Start new page",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Theme.of(context).primaryColor,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SecondPage()));
+              },
+            ),
+            RaisedButton(
+              child: Text(
+                "Change to page 3",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Theme.of(context).colorScheme.secondary,
+              onPressed: () {
+                final FancyBottomNavigationState fState = bottomNavigationKey
+                    .currentState as FancyBottomNavigationState;
+                fState.setPage(2);
+              },
+            )
+          ],
+        );
+      case 1:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the search page"),
+            RaisedButton(
+              child: Text(
+                "Start new page",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Theme.of(context).primaryColor,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SecondPage()));
+              },
+            )
+          ],
+        );
+      default:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the basket page"),
+            RaisedButton(
+              child: Text(
+                "Start new page",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Theme.of(context).primaryColor,
+              onPressed: () {},
+            )
+          ],
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,73 +137,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-
-  _getPage(int page) {
-    switch (page) {
-      case 0:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text("This is the home page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SecondPage()));
-              },
-            ),
-            RaisedButton(
-              child: Text(
-                "Change to page 3",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).accentColor,
-              onPressed: () {
-                final FancyBottomNavigationState fState = bottomNavigationKey
-                    .currentState as FancyBottomNavigationState;
-                fState.setPage(2);
-              },
-            )
-          ],
-        );
-      case 1:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text("This is the search page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SecondPage()));
-              },
-            )
-          ],
-        );
-      default:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text("This is the basket page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
-              onPressed: () {},
-            )
-          ],
-        );
-    }
   }
 }
