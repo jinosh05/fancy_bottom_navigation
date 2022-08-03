@@ -107,6 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: FancyBottomNavigation(
+        // activeIconColor: Colors.pink,
+        // circleColor: Colors.purple,
+        // inactiveIconColor: Colors.green,
         tabs: [
           TabData(
               iconData: Icons.home,

@@ -21,7 +21,7 @@ class FancyBottomNavigation extends StatefulWidget {
       this.circleColor,
       this.activeIconColor,
       this.inactiveIconColor,
-      this.textColor,
+      this.textStyle,
       this.barBackgroundColor})
       : assert(tabs.length > 1 && tabs.length < 5);
 
@@ -29,7 +29,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color? circleColor;
   final Color? activeIconColor;
   final Color? inactiveIconColor;
-  final Color? textColor;
+  final TextStyle? textStyle;
   final Color? barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
@@ -75,10 +75,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ((Theme.of(context).brightness == Brightness.dark)
             ? Color(0xFF212121)
             : Colors.white);
-    textColor = widget.textColor ??
-        ((Theme.of(context).brightness == Brightness.dark)
-            ? Colors.white
-            : Colors.black54);
+
     inactiveIconColor = (widget.inactiveIconColor) ??
         ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
@@ -125,7 +122,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     iconData: t.iconData,
                     title: t.title,
                     iconColor: inactiveIconColor,
-                    textColor: textColor,
+                    textStyle: widget.textStyle,
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
                           .indexWhere((tabData) => tabData.key == uniqueKey);
