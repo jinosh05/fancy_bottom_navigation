@@ -32,6 +32,7 @@ class TabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Expanded(
       child: Stack(
         fit: StackFit.expand,
@@ -43,7 +44,7 @@ class TabItem extends StatelessWidget {
                 duration: Duration(milliseconds: ANIM_DURATION),
                 alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(width * 0.02),
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
