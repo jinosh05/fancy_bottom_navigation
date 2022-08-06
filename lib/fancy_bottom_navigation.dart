@@ -2,7 +2,6 @@ library fancy_bottom_navigation;
 
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
-import 'package:fancy_bottom_navigation/paint/half_painter.dart';
 import 'package:flutter/material.dart';
 
 const double CIRCLE_SIZE = 60;
@@ -136,12 +135,15 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         Positioned.fill(
           top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
           child: Container(
+            // color: Colors.deepOrangeAccent,
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
               curve: Curves.easeOut,
               alignment: Alignment(_circleAlignX, 1),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+                padding: const EdgeInsets.only(
+                  bottom: (CIRCLE_SIZE + CIRCLE_OUTLINE) / 4, //15
+                ),
                 child: FractionallySizedBox(
                   widthFactor: 1 / widget.tabs.length,
                   child: GestureDetector(
@@ -160,45 +162,53 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               child: Container(
                                 child: Center(
                                   child: Container(
-                                      width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurRadius: 8)
-                                          ])),
+                                    width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                    height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                    decoration: BoxDecoration(
+                                      color: barBackgroundColor,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: CIRCLE_OUTLINE * 0.75,
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               )),
                         ),
-                        SizedBox(
-                            height: ARC_HEIGHT,
-                            width: ARC_WIDTH,
-                            child: CustomPaint(
-                              painter: HalfPainter(barBackgroundColor),
-                            )),
-                        SizedBox(
-                          height: CIRCLE_SIZE,
-                          width: CIRCLE_SIZE,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: circleColor),
-                            child: Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: AnimatedOpacity(
-                                duration:
-                                    Duration(milliseconds: ANIM_DURATION ~/ 5),
-                                opacity: _circleIconAlpha,
-                                child: Icon(
-                                  activeIcon,
-                                  color: activeIconColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
+                        // SizedBox(
+                        //   height: ARC_HEIGHT,
+                        //   width: ARC_WIDTH,
+                        //   child: CustomPaint(
+                        //     painter: HalfPainter(
+                        //       barBackgroundColor,
+                        //       ARC_HEIGHT,
+                        //       outline: 10,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: CIRCLE_SIZE,
+                        //   width: CIRCLE_SIZE,
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //         shape: BoxShape.circle, color: circleColor),
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.all(0.0),
+                        //       child: AnimatedOpacity(
+                        //         duration:
+                        //             Duration(milliseconds: ANIM_DURATION ~/ 5),
+                        //         opacity: _circleIconAlpha,
+                        //         child: Icon(
+                        //           activeIcon,
+                        //           color: activeIconColor,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
